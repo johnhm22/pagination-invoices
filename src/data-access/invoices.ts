@@ -7,5 +7,7 @@ export const getInvoices = async (skip: number, limit: number) => {
 		take: limit,
 	});
 
-	return invoices;
+	const numberOfInvoices = await prisma.invoice.count();
+
+	return { invoices, numberOfInvoices };
 };
