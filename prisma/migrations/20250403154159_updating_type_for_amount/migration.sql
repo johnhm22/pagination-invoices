@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Invoice" ALTER COLUMN "amount" SET DATA TYPE TEXT,
+ALTER COLUMN "status" SET DEFAULT 'OPEN';
