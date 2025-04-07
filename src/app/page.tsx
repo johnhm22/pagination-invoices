@@ -1,8 +1,10 @@
+import Link from "next/link";
+import clsx from "clsx";
+
 import { cn } from "@/src/lib/utils";
 import { Status } from "../components/Status";
 import { getInvoices } from "../data-access/invoices";
-import Link from "next/link";
-import clsx from "clsx";
+import TrashCan from "../components/TrashCan";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -21,9 +23,13 @@ export default async function Home({
 	const { invoices, numberOfInvoices } = await getInvoices(skip, limit);
 
 	return (
-		<main className="">
+		<main className="min-h-screen">
 			<h1 className="text-4xl font-bold ml-5 mt-7">Invoice Reporting</h1>
+
 			<div className="w-4/5 min-h-2/3 mx-auto mt-20">
+				<p className="text-right py-3 font-semibold tracking-wide">
+					<Link href={"/add-invoice"}>Add invoice</Link>
+				</p>
 				<table className="min-w-full text-left text-sm font-light">
 					<thead className="border-2 border-neutral-200 bg-white font-medium">
 						<tr className="bg-blue-200">
@@ -32,6 +38,7 @@ export default async function Home({
 							<th className="px-6 py-4">Email</th>
 							<th className="px-6 py-4">Status</th>
 							<th className="px-6 py-4">Amount</th>
+							<th className="px-6 py-4"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -61,7 +68,12 @@ export default async function Home({
 										{invoice.status}
 									</Status>
 								</td>
-								<td className="whitespace-nowrap px-6 py-4">$5000</td>
+								<td className="whitespace-nowrap px-6 py-4">
+									{invoice.amount}
+								</td>
+								<td className="whitespace-nowrap px-6 py-4">
+									<TrashCan id={invoice.id} />
+								</td>
 							</tr>
 						))}
 					</tbody>
