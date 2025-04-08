@@ -16,7 +16,8 @@ export default async function Home({
 	const searchTerms = await searchParams;
 
 	const page = typeof searchTerms.page === "string" ? +searchTerms.page : 1;
-	const limit = typeof searchTerms.limit === "string" ? +searchTerms.limit : 5;
+	// const limit = typeof searchTerms.limit === "string" ? +searchTerms.limit : 5;
+	const limit = 5;
 
 	const skip = (page - 1) * limit;
 
