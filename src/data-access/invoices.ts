@@ -18,6 +18,7 @@ export const getInvoices = async (skip: number, limit: number) => {
 };
 
 export const addInvoice = async (formData: FormData) => {
+	// add authentication here
 	const name = formData.get("name") as string;
 	const email = formData.get("email") as string;
 	const amount = formData.get("amount") as string;
@@ -37,6 +38,7 @@ export const addInvoice = async (formData: FormData) => {
 };
 
 export const deleteInvoice = async (id: number) => {
+	// add authentication here
 	await prisma.invoice.delete({
 		where: {
 			id,
