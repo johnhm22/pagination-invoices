@@ -17,6 +17,16 @@ export const getInvoices = async (skip: number, limit: number) => {
 	return { invoices, numberOfInvoices };
 };
 
+export const getSingleInvoice = async (id: number) => {
+	// add authentication here
+	const result = await prisma.invoice.findUnique({
+		where: {
+			id,
+		},
+	});
+	return result;
+};
+
 export const addInvoice = async (formData: FormData) => {
 	// add authentication here
 	const name = formData.get("name") as string;
