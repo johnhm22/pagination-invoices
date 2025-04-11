@@ -5,6 +5,7 @@ import { cn } from "@/src/lib/utils";
 import { Status } from "../components/Status";
 import { getInvoices } from "../data-access/invoices";
 import TrashCan from "../components/TrashCan";
+import InvoiceDetails from "../components/InvoiceDetails";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -27,7 +28,7 @@ export default async function Home({
 		<main className="min-h-screen">
 			<h1 className="text-4xl font-bold ml-5 mt-7">Invoice Reporting</h1>
 
-			<div className="w-4/5 min-h-2/3 mx-auto mt-20">
+			<div className="w-4/5 min-h-2/3 mx-auto mt-20 overflow-x-auto">
 				<p className="text-right py-3 font-semibold tracking-wide">
 					<Link href={"/add-invoice"}>Add invoice</Link>
 				</p>
@@ -40,13 +41,14 @@ export default async function Home({
 							<th className="px-6 py-4">Status</th>
 							<th className="px-6 py-4">Amount</th>
 							<th className="px-6 py-4"></th>
+							<th className="px-6 py-4"></th>
 						</tr>
 					</thead>
 					<tbody>
 						{invoices.map((invoice) => (
 							<tr
 								key={invoice.id}
-								className="border-2 border-neutral-200 bg-whote"
+								className="border-2 border-neutral-200 bg-white"
 							>
 								<td className="whitespace-nowrap px-6 py-4">
 									{new Date(invoice.date).toLocaleDateString()}
@@ -71,6 +73,9 @@ export default async function Home({
 								</td>
 								<td className="whitespace-nowrap px-6 py-4">
 									{invoice.amount}
+								</td>
+								<td className="whitespace-nowrap px-6 py-4">
+									<InvoiceDetails id={invoice.id} />
 								</td>
 								<td className="whitespace-nowrap px-6 py-4">
 									<TrashCan id={invoice.id} />
