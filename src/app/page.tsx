@@ -25,65 +25,62 @@ export default async function Home({
 	const { invoices, numberOfInvoices } = await getInvoices(skip, limit);
 
 	return (
-		<main className="min-h-screen">
+		<main className="min-h-full">
 			<h1 className="text-4xl font-bold ml-5 mt-7">Invoice Reporting</h1>
-
-			<div className="w-4/5 min-h-2/3 mx-auto mt-20 overflow-x-auto">
+			<div className="w-4/5 min-h-2/3 mx-auto mt-20">
 				<p className="text-right py-3 font-semibold tracking-wide">
 					<Link href={"/add-invoice"}>Add invoice</Link>
 				</p>
-				<table className="min-w-full text-left text-sm font-light">
-					<thead className="border-2 border-neutral-200 bg-white font-medium">
-						<tr className="bg-blue-200">
-							<th className="px-6 py-4">Date</th>
-							<th className="px-6 py-4">Customer</th>
-							<th className="px-6 py-4">Email</th>
-							<th className="px-6 py-4">Status</th>
-							<th className="px-6 py-4">Amount</th>
-							<th className="px-6 py-4"></th>
-							<th className="px-6 py-4"></th>
-						</tr>
-					</thead>
-					<tbody>
-						{invoices.map((invoice) => (
-							<tr
-								key={invoice.id}
-								className="border-2 border-neutral-200 bg-white"
-							>
-								<td className="whitespace-nowrap px-6 py-4">
-									{new Date(invoice.date).toLocaleDateString()}
-								</td>
-								<td className="whitespace-nowrap px-6 py-4">
-									{invoice.fullName}
-								</td>
-								<td className="whitespace-nowrap px-6 py-4">{invoice.email}</td>
-								<td className="whitespace-nowrap px-6 py-4">
-									<Status
-										className={cn(
-											"capitalize",
-
-											invoice.status === "OPEN" && "bg-blue-400",
-											invoice.status === "PAID" && "bg-green-500",
-											invoice.status === "CANCELLED" && "bg-zinc-400",
-											invoice.status === "UNCOLLECTABLE" && "bg-red-500"
-										)}
-									>
-										{invoice.status}
-									</Status>
-								</td>
-								<td className="whitespace-nowrap px-6 py-4">
-									{invoice.amount}
-								</td>
-								<td className="whitespace-nowrap px-6 py-4">
-									<InvoiceDetails id={invoice.id} />
-								</td>
-								<td className="whitespace-nowrap px-6 py-4">
-									<TrashCan id={invoice.id} />
-								</td>
+				<div className="overflow-scroll">
+					<table className="w-full table-auto text-left text-sm font-light">
+						<thead className="border-2 border-neutral-200 bg-white font-medium">
+							<tr className="bg-blue-200 mb-2">
+								<th className="px-6 py-4">Date</th>
+								<th className="px-6 py-4">Customer</th>
+								<th className="px-6 py-4">Email</th>
+								<th className="px-6 py-4">Status</th>
+								<th className="px-6 py-4">Amount</th>
+								<th className="px-6 py-4"></th>
+								<th className="px-6 py-4"></th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{invoices.map((invoice) => (
+								<tr
+									key={invoice.id}
+									className="border-2 border-neutral-200 bg-white"
+								>
+									<td className="td-class">
+										{new Date(invoice.date).toLocaleDateString()}
+									</td>
+									<td className="td-class">{invoice.fullName}</td>
+									<td className="td-class">{invoice.email}</td>
+									<td className="td-class">
+										<Status
+											className={cn(
+												"capitalize",
+
+												invoice.status === "OPEN" && "bg-blue-400",
+												invoice.status === "PAID" && "bg-green-500",
+												invoice.status === "CANCELLED" && "bg-zinc-400",
+												invoice.status === "UNCOLLECTABLE" && "bg-red-500"
+											)}
+										>
+											{invoice.status}
+										</Status>
+									</td>
+									<td className="td-class">£{invoice.amount}</td>
+									<td className="px-6 py-4">
+										<InvoiceDetails id={invoice.id} />
+									</td>
+									<td className="px-6 py-4">
+										<TrashCan id={invoice.id} />
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 				<div className="flex gap-2 justify-end mt-3 text-md">
 					<Link
 						href={`/?page=${page > 1 ? page - 1 : 1}&limit=${limit}`}
