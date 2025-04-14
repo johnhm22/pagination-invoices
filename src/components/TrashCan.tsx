@@ -18,7 +18,7 @@ const TrashCan = ({ id }: { id: number }) => {
 
 	return (
 		<div>
-			<div className="hover:cursor-pointer">
+			<div className="h-9 w-12 p-1 hover:cursor-pointer">
 				<Image
 					src="/trash.png"
 					width={20}
