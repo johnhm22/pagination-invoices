@@ -31,12 +31,12 @@ const TrashCan = ({ id }: { id: number }) => {
 			</div>
 			<dialog
 				ref={dialogRef}
-				className="mx-auto my-auto h-1/4 w-1/3 bg-stone-100 p-3 rounded-lg"
+				className="mx-auto my-auto h-1/2 md:h-1/3 lg:h-1/3 w-1/2 lg:w-1/3 bg-stone-100 p-3 rounded-lg"
 			>
-				<h3 className="text-xl font-semibold flex justify-center">
+				<h3 className="text-center text-lg md:text-xl font-semibold flex justify-center">
 					Are you absolutely sure?
 				</h3>
-				<p className="mt-4 w-3/4 text-wrap text-center mx-auto">
+				<p className="mt-4 w-3/4 text-wrap text-center mx-auto text-xl">
 					This action cannot be undone. It will permanently delete this invoice
 					and remove it from the database.
 				</p>

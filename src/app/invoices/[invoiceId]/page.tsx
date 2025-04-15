@@ -23,9 +23,9 @@ export default async function Page({
 
 	return (
 		<main className="flex justify-center items-center min-h-screen">
-			<div className="bg-slate-200 rounded-tr-lg rounded-bl-lg flex flex-col w-4/5 md:w-2/3 lg:w-2/5 px-2">
+			<div className="bg-slate-200 rounded-tr-lg rounded-bl-lg flex flex-col w-4/5 md:w-2/3 lg:w-2/5 px-3">
 				<div className="flex flex-row justify-around gap-11 py-5 mb-5">
-					<p className="text-lg md:text-xl font-semibold">
+					<p className="text-lg md:text-2xl font-semibold">
 						Invoice Reference: {invoiceId}
 					</p>
 					<button
@@ -48,13 +48,11 @@ export default async function Page({
 						{invoice.status}{" "}
 					</button>
 				</div>
-				<div className="flex flex-col gap-7">
-					<p className="text-xl font-semibold">{invoice.fullName}</p>
-					<p className="text-xl font-semibold">{invoice.email}</p>
-					<p className="text-xl font-semibold">£{invoice.amount}</p>
-					<p className="text-xl font-semibold">
-						{new Date(invoice.date).toLocaleDateString()}
-					</p>
+				<div className="flex flex-col gap-7 text-lg md:text-xl font-semibold ">
+					<p>{invoice.fullName}</p>
+					<p>{invoice.email}</p>
+					<p>£{invoice.amount}</p>
+					<p>{new Date(invoice.date).toLocaleDateString()}</p>
 				</div>
 				<div className="flex justify-end">
 					<button className="bg-blue-400 py-1 my-3 mr-2 w-20 rounded-lg text-black hover:cursor-pointer hover:shadow-xl">
