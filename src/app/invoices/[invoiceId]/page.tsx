@@ -12,7 +12,7 @@ export default async function Page({
 	const { invoiceId } = await params;
 	const id = parseInt(invoiceId);
 	if (isNaN(id)) {
-		throw new Error("Invoice id format not recognised");
+		notFound();
 	}
 
 	const invoice = await getSingleInvoice(id);
